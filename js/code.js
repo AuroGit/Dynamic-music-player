@@ -672,11 +672,10 @@ const setSong = id => {
     playlistItemArr.forEach(el=>{el.removeAttribute("active")});
     playlistItemArr[id].setAttribute("active", "");
     title.innerText = currentList[id].nombre;
-    setTimeout(()=>{
+    audioSrc.addEventListener("canplaythrough", ()=>{
         progress.max = audioSrc.duration;
-        duration.innerText = formatTime(audioSrc.duration) == `NaN:NaN` ? 
-            currentList[id].duracion : formatTime(audioSrc.duration);console.log("ad:" + audioSrc.duration + "/" + formatTime(audioSrc.duration));
-    }, 150);
+        duration.innerText = formatTime(audioSrc.duration);
+    });
 }
 const createContext = ()=> {
     audioCtxt = new AudioContext() || new WebkitAudioContext();
