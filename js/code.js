@@ -671,10 +671,10 @@ const setSong = id => {
     const playlistItemArr = document.querySelectorAll(".now-playing");
     playlistItemArr.forEach(el=>{el.removeAttribute("active")});
     playlistItemArr[id].setAttribute("active", "");
-    title.innerText = currentList[id].nombre;
     audioSrc.addEventListener("canplaythrough", ()=>{
         progress.max = audioSrc.duration;
         duration.innerText = formatTime(audioSrc.duration);
+        title.innerText = currentList[id].nombre;
     });
 }
 const createContext = ()=> {
