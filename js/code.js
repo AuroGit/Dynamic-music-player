@@ -675,7 +675,7 @@ const setSong = id => {
     setTimeout(()=>{
         progress.max = audioSrc.duration;
         duration.innerText = formatTime(audioSrc.duration) == `NaN:NaN` ? 
-            currentList[id].duracion : formatTime(audioSrc.duration);
+            currentList[id].duracion : formatTime(audioSrc.duration);console.log("ad:" + audioSrc.duration + "/" + formatTime(audioSrc.duration));
     }, 150);
 }
 const createContext = ()=> {
