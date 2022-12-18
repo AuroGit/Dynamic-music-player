@@ -1,0 +1,131 @@
+:root{
+    --main-hue: 25;
+    --bg: var(--main-hue), 50%, 50%;
+    --accent-color: #f40;
+
+    --text-color-light-theme: #000;
+    --text-color-dark-theme: #fff;
+    --text-color: var(--text-color-light-theme);
+
+    --bg-light-theme: #ddd;
+    --bg-dark-theme: #111;
+    --bg-theme: var(--bg-light-theme);
+
+    --shadow-light-color: rgba(20, 20, 37, .66);
+    --shadow-dark-color: rgba(0, 0, 0, 1);
+    --shadow-color: var(--shadow-light-color);
+
+    --list-2nd-light-color: #ccc;
+    --list-2nd-dark-color: #222;
+    --list-2nd-color: var(--list-2nd-light-color);
+
+    --player-color-2-light: #fff;
+    --player-color-2-dark: #000;
+    --player-color-2: var(--player-color-2-light);
+}
+
+
+/* Main */
+body{
+    background-color: #888;
+}
+
+.container{color: var(--text-color);}
+.container:not(:has(.playlist-item[selected])){background-color: var(--bg-theme);}
+
+.bar{
+    background-color: var(--text-color);
+    opacity: .75;
+}
+
+
+/* Selector */
+header, .playlist-selector{background-color: var(--bg-theme);}
+.selector-btn{
+    color: var(--text-color);
+    background-image: linear-gradient(var(--bg-rot), var(--bg-theme) 5%, 
+        transparent);
+}
+.selector-btn:hover{color: var(--accent-color);}
+.record .buttons *{
+    background-color: transparent;
+    color: #ccc;
+}
+.record:hover .buttons{background-color: rgba(0,0,0,.5);}
+.record .buttons *:hover{color: #fff;}
+.record .buttons button{border: solid 2px #ccc;}
+.record .buttons svg{fill: #ccc;}
+.record .buttons button:hover svg{fill: #fff;}
+.record .buttons button:hover{
+    background-color: initial;
+    border-color: #fff;
+}
+
+.compact .playlist-name{color: #fff;}
+
+
+/* Player */
+#player{background-image: linear-gradient(transparent, var(--player-color-2) 85%);}
+#player #current-disc{filter: drop-shadow(0 0 5px rgba(0,0,0,1)); -webkit-filter: drop-shadow(0 0 5px rgba(0,0,0,1));}
+#player button.no-btn:not(#hide-list){
+    border: solid 2px transparent;
+    background-color: var(--bg-theme);
+}
+#player button.no-btn:not(#hide-list):hover svg{
+    fill: var(--text-color)
+}
+
+#player button:not(.no-btn):not([disabled]):hover, #player .buttons-main button:not([disabled]):hover{
+    border-color: #888;
+}
+
+input{accent-color: var(--accent-color);}
+input.disabled{accent-color: #888;}
+
+#playlist-list{
+    background-color: var(--bg-theme);
+    color: var(--text-color);
+    box-shadow: 0 0 10px var(--shadow-color);
+}
+
+#randomize:hover{color: hsl(var(--accent-color));}
+
+#playlist-list ul::-webkit-scrollbar-thumb{
+    background-color: #888;
+    border: solid 2px var(--bg-theme);
+    border-radius: 5px;
+}
+
+#playlist-list li:nth-child(odd){background-color: var(--list-2nd-color);}
+#playlist-list li:hover{
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+.full-height-list{border-top: solid 1px var(--text-color);}
+
+.now-playing{color: hsl(var(--main-hue),100%,50%);}
+
+.playlist-track:hover .now-playing{color: #fff;}
+
+#hide-list svg{fill: var(--text-color);}
+#hide-list:hover svg{fill: var(--accent-color);}
+
+/* Password */
+.password-window{background-color: rgba(128,128,128,.5);}
+.password{
+    background-color: var(--player-color-2);
+    box-shadow: 0 0 50px var(--shadow-color);
+    color: var(--text-color);
+}
+.password input{
+    border-color: transparent;
+    background-color: transparent;
+    border-bottom: solid 2px var(--accent-color);
+    color: var(--text-color);
+    caret-color: var(--text-color);
+}
+.password button{
+    color: var(--text-color);
+    border: solid 1px var(--text-color);
+}

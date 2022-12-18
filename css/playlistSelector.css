@@ -1,0 +1,167 @@
+/* Selector de Playlist */
+.playlist-selector{
+    position: relative;
+    z-index: 20;
+    padding: 50px 0;
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    overflow-x: hidden;
+    scroll-snap-type: x proximity;
+    transition-property: background-color, height; -webkit-transition-property: background-color, height; -moz-transition-property: background-color, height; -o-transition-property: background-color, height;
+    transition-duration: .3s; -webkit-transition-duration: .3s; -moz-transition-duration: .3s; -o-transition-duration: .3s;
+}
+.selector-btn{
+    --bg-rot: 90deg;
+    cursor: pointer;
+    position: fixed;
+    height: inherit;
+    top: 100px;
+    width: 10%;
+    min-width: 100px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    transition-property: background-image; -webkit-transition-property: background-image; -moz-transition-property: background-image; -o-transition-property: background-image;
+    transition-duration: .3s; -webkit-transition-duration: .3s; -moz-transition-duration: .3s; -o-transition-duration: .3s;
+}
+.selector-btn.selector-left-btn{
+    justify-content: start;
+    visibility: hidden;
+    left: 0;
+}
+.selector-btn.selector-right-btn{
+    justify-content: end;
+    --bg-rot: -90deg;
+    right: 0;
+}
+.selector-btn img, .record .buttons svg{pointer-events: none;}
+
+.playlist-selector ul{
+    height: fit-content;
+    list-style: none;
+    display: flex;
+    gap: 50px;
+    padding: 10px 50px;
+    margin: 0 auto;
+}
+
+.playlist-item{
+    --size: 250px;
+    width: var(--size);
+    height: var(--size);
+    position: relative;
+    display: inline-block;
+    scroll-snap-align: center;
+    transition-property: transform, height; -webkit-transition-property: transform, height; -moz-transition-property: transform, height; -o-transition-property: transform, height;
+    transition-duration: .3s; -webkit-transition-duration: .3s; -moz-transition-duration: .3s; -o-transition-duration: .3s;
+}
+.playlist-item:has(.record:hover){transform: scale(1.05); -webkit-transform: scale(1.05); -moz-transform: scale(1.05); -o-transform: scale(1.05);}
+
+.record{
+    width: var(--size);
+    height: var(--size);
+    position: relative;
+    height: 100%;
+    box-shadow: 0 0 10px var(--shadow-color);
+    transition-property: box-shadow, border-radius; -webkit-transition-property: box-shadow, border-radius; -moz-transition-property: box-shadow, border-radius; -o-transition-property: box-shadow, border-radius;
+    transition-duration: .5s; -webkit-transition-duration: .5s; -moz-transition-duration: .5s; -o-transition-duration: .5s;
+}
+.record:hover{box-shadow: 0 0 25px var(--shadow-color);}
+.record:hover .buttons{backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);}
+.record:hover .disc{transform: translateY(-50%); -webkit-transform: translateY(-50%); -moz-transform: translateY(-50%); -o-transform: translateY(-50%);}
+.record>img{
+    position: absolute;
+    display: block;
+    width: var(--size);
+    height: var(--size);
+    object-fit: contain; -o-object-fit: contain;
+}
+img.case{object-fit: cover; -o-object-fit: cover;}
+img.disc{
+    transition-property: transform; -webkit-transition-property: transform; -moz-transition-property: transform; -o-transition-property: transform;
+    transition-duration: .5s; -webkit-transition-duration: .5s; -moz-transition-duration: .5s; -o-transition-duration: .5s;
+    transition-delay: .2s; -webkit-transition-delay: .2s; -moz-transition-delay: .2s; -o-transition-delay: .2s;
+}
+.record .buttons{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    transition-property: background-color, backdrop-filter; -webkit-transition-property: background-color, backdrop-filter; -moz-transition-property: background-color, backdrop-filter; -o-transition-property: background-color, backdrop-filter;
+    transition-duration: .4s; -webkit-transition-duration: .4s; -moz-transition-duration: .4s; -o-transition-duration: .4s;
+}
+.record .buttons *{
+    opacity: 0;
+    margin: auto;
+    transition-property: opacity, border-color, color, fill; -webkit-transition-property: opacity, border-color, color, fill; -moz-transition-property: opacity, border-color, color, fill; -o-transition-property: opacity, border-color, color, fill;
+    transition-duration: .2s; -webkit-transition-duration: .2s; -moz-transition-duration: .2s; -o-transition-duration: .2s;
+}
+.record:hover .buttons *{
+    opacity: 1;
+    cursor: pointer;
+}
+.record .buttons button{
+    --size: 100px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: var(--size);
+    display: flex;
+}
+
+.record .buttons span{
+    position: absolute;
+    bottom: 10%;
+    font-size: 1em;
+    text-decoration: underline;
+}
+
+.playlist-name{
+    text-align: center;
+    margin-top: 10px;
+    line-height: 1.2em;
+}
+#mar.playlist-item .playlist-name{font-family: 'Vujahday Script', 'MuseoModerno', sans-serif; font-size: 1.2em;}
+
+/* Selector Compacto */
+.compact{
+    height: 20vh;
+}
+.compact .selector-btn{height: 17vh;}
+
+.compact .playlist-item{
+    height: 50px;
+    pointer-events: none;
+}
+.compact .playlist-item:not([selected]){
+    opacity: .5;
+}
+.compact .record{
+    border-radius: 100px;
+    overflow: hidden;
+    cursor: default;
+}
+.compact .record img{
+    object-fit: cover; -o-object-fit: cover;
+    height: inherit;
+}
+.compact .disc, .compact .buttons{display: none;}
+.compact .playlist-name{
+    position: absolute;
+    margin: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); -webkit-transform: translate(-50%, -50%); -moz-transform: translate(-50%, -50%); -o-transform: translate(-50%, -50%);
+    z-index: 10;
+}
+.compact h2{
+    cursor: default;
+    text-shadow: 0 0 10px #000;
+}

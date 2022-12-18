@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+
+    <title>Dynamic - m·u·s·i·c·p·l·a·y·e·r</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img id="symbol" src="assets/images/logo/logo-DynamicMP-Symbol.svg" class="d-none" height="100%" alt="">
+            <button id="theme" data-value="light" title="Cambiar tema">
+                <img src="assets/images/icons/dark-theme-icon.svg" alt="">
+            </button>
+        </header>
+
+        <section class="playlist-selector">
+            <span id="left-btn" class="selector-btn selector-left-btn">
+                <img width="20px" src="assets/images/icons/left-icon.svg" alt="">
+            </span>
+            
+            <ul id="list"></ul>
+
+            <span id="right-btn" class="selector-btn selector-right-btn">
+                <img width="20px%" src="assets/images/icons/right-icon.svg" alt="">
+            </span>
+        </section>
+
+        <img id="full-logo" src="assets/images/logo/logo-DynamicMP-full-light.svg" width="50%" alt="">
+        
+        <section id="player" class="d-none">
+            <div class="buttons-top">
+                <button id="back" class="no-btn" title="Volver">
+                    <svg fill="#888" width="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75.39 75.39">
+                        <path d="M68.64,28.07a23,23,0,0,0-16.29-6.75H13.58L21,13.91,15.06,8,1.73,21.32a5.93,5.93,0,0,0,0,8.38L15.06,43,21,37.1l-7.41-7.4H52.35a14.66,14.66,0,1,1,0,29.32h-23V67.4h23A23,23,0,0,0,68.64,28.07Z"/>
+                    </svg>
+                </button>
+                <button id="pl-table-show" class="no-btn">
+                    <svg fill="#888" width="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75.39 75.39">
+                        <path d="M66.84,17.71l-4.1-4.1L58.55,9.42V47.7A14,14,0,0,0,50.18,45c-6.94,0-12.57,4.69-12.57,10.47S43.24,66,50.18,66s12.56-4.68,12.56-10.47h0v-30l2.6,2.59a9.24,9.24,0,0,1,1.5,11.08A15.14,15.14,0,0,0,66.84,17.71Z"/>
+                        <rect x="23.03" y="-6.28" width="8.38" height="46.07" transform="translate(43.98 -10.47) rotate(90)"/>
+                        <rect x="23.03" y="12.56" width="8.38" height="46.07" transform="translate(62.82 8.38) rotate(90)"/>
+                        <rect x="12.56" y="41.88" width="8.38" height="25.13" transform="translate(71.2 37.69) rotate(90)"/>
+                    </svg>
+                </button>
+            </div>
+
+            <img src="assets/images/record.png" alt="" id="current-disc">
+            <h2 id="title">Titulo</h2>
+            
+            <div class="buttons-bottom">
+                <div class="time">
+                    <input id="progress" type="range" min="0" max="100" step="1">
+                    <span class="current-time">0:00</span>
+                    <span class="duration">0:00</span>
+                </div>
+    
+                <div class="buttons-main">
+                    <button id="mode" data-value="0" title="Modo de reproducción">
+                        <img width="20px" src="assets/images/icons/ordered-icon.svg" alt="">
+                    </button>
+                    <div>
+                        <button id="prev">
+                            <img width="20px" src="assets/images/icons/prev-icon.svg" alt="">
+                        </button>
+                        <button id="play">
+                            <img width="30px" src="assets/images/icons/play-icon.svg" alt="">
+                        </button>
+                        <button id="next">
+                            <img width="20px" src="assets/images/icons/next-icon.svg" alt="">
+                        </button>
+                    </div>
+                    <button id="volume">
+                        <svg fill="#888" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88.46 75.39">
+                            <rect x="11.07" y="23.03" width="14.66" height="29.32"/>
+                            <polygon points="50.86 4.19 29.92 23.03 29.92 52.35 50.86 71.2 50.86 4.19"/>
+                            
+                            <path id="min-vol" style="visibility: visible;" d="M64.67,37.69a22.23,22.23,0,0,1-6.52,15.76l-4.21-4.2h0a16.32,16.32,0,0,0,0-23.1l4.2-4.2h0A22.2,22.2,0,0,1,64.67,37.69Z"/>
+                            <path id="mid-vol" style="visibility: visible;" d="M76.57,37.69a34.08,34.08,0,0,1-10,24.17l-4.21-4.2h0a28.22,28.22,0,0,0,0-39.92l4.2-4.2h0A34.08,34.08,0,0,1,76.57,37.69Z"/>
+                            <path id="max-vol" style="visibility: hidden;" d="M88.46,37.69A46,46,0,0,1,75,70.27l-4.21-4.21a40.12,40.12,0,0,0,0-56.74L75,5.12h0A46,46,0,0,1,88.46,37.69Z"/>
+                            
+                            <polygon id="mute" fill="#f00" style="visibility: hidden;" points="65.93 10.38 60.27 4.73 32.97 32.04 5.66 4.73 0 10.38 27.31 37.69 0 65 5.66 70.66 32.97 43.35 60.27 70.66 65.93 65 38.62 37.69 65.93 10.38"/>
+                        </svg>
+                        <input id="volume-input" type="range" min="0" max=".5" step=".025" title="50%">
+                    </button>          
+                </div>
+            </div>
+            
+            <section id="playlist-list">
+                <button id="hide-list" class="no-btn">
+                    <svg width="10px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90.29 150.78">
+                        <path d="M82.83,57.39,25.48.05,0,25.53,49.88,75.41,0,125.3l25.48,25.48L82.83,93.43h0A25.49,25.49,0,0,0,82.83,57.39Z"/>
+                    </svg>
+                </button>
+                <h3 id="list-name">Playlist name</h3>
+                <div id="randomize">
+                    <img width="15px" src="assets/images/icons/random-icon.svg" alt="">
+                    <p>Reproducción aleatoria</p>
+                </div>
+                <ul id="track-list"></ul>
+            </section>
+        </section>
+
+        <audio class="audio-source"></audio>
+
+        <div id="visualizer" class="d-none"></div>
+    </div>
+
+    <div class="password-window d-none">
+        <div class="password">
+            <input type="text" placeholder="Contraseña">
+            <button class="enter-password">ENTER</button>
+        </div>
+        <div class="password d-none">
+            <h1>Contraseña incorrecta</h1>
+            <p>Lo siento, esta Playlist es <strong>Privada.</strong></p>
+        </div>
+        <div class="password d-none">
+            <h1>¡¡Felicidades Mari!!</h1>
+            <p>Espero que te guste la <strong>Playlist.</strong></p>
+        </div>
+    </div>
+
+    <script src="js/code.js"></script>
+</body>
+</html>

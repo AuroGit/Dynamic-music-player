@@ -1,0 +1,49 @@
+/* Tablet */
+@media screen and (max-width: 768px) {
+    .record .buttons *{opacity: 1;}
+    .record .buttons span{
+        background-color: #ccc;
+        color: #000;
+        padding-inline: 10px;
+        border-radius: 20px;
+        font-weight: 600;
+    }
+    #player #volume, #player #volume *{visibility: hidden!important;}
+    #player #volume input{display: none;}
+    #player .buttons-main{gap: 0;}
+    #player .buttons-main>div{
+        border: solid 2px rgba(128,128,128,.5);
+        border-radius: 100px;
+    }
+    #player button:hover{border-color: transparent!important;}
+    #player button#play{width: unset;}
+}
+
+/* Movil */
+@media screen and (max-width: 375px) {
+    .playlist-item{--size: 180px;}
+    .record .buttons button{--size: 80px;}
+    .selector-btn{
+        min-width: 50px;
+        width: 20%;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .playlist-name{font-size: .8em;}
+    #playlist-list ul, #randomize{font-size: .75em;}
+    #player #title{font-size: 1em;}
+    #player #volume, #player #volume *{display: none;}
+    #player #mode{position: absolute; left: 7px;}
+}
+
+@media screen and (max-height: 889px) {
+    .playlist-item{--size: 180px;}
+    .playlist-item .disc{display: none;}
+    .record .buttons button{--size: 80px;}
+    #player #current-disc{width: 200px;}
+}
+
+@media screen and (max-height: 700px) {
+    #player{padding: 20px;}
+}

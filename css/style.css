@@ -1,0 +1,181 @@
+@import url("playlistSelector.css");
+@import url("player.css");
+@import url("color.css");
+@import url("media.css");
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=MuseoModerno&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vujahday+Script&display=swap');
+
+/* Reset */
+*{
+    box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Variables */
+:root{
+    --header-height: 100px;
+}
+
+/* Body */
+body{
+    align-items: center;
+    font-family: 'MuseoModerno', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-flow: column;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Header */
+header{
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width: 980px;
+    height: 100px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 20px 25px;
+    z-index: 10;
+    transition-property: background-color; -webkit-transition-property: background-color; -moz-transition-property: background-color; -o-transition-property: background-color;
+    transition-duration: .3s; -webkit-transition-duration: .3s; -moz-transition-duration: .3s; -o-transition-duration: .3s;
+}
+header>button{margin-left: auto;}
+
+/* Container */
+.container{
+    position: relative;
+    max-width: 980px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 10px 25px var(--shadow-color);
+    min-height: 100vh;
+    height: 100vh;
+    backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+    transition-property: background-color, color; -webkit-transition-property: background-color, color; -moz-transition-property: background-color, color; -o-transition-property: background-color, color;
+    transition-duration: .3s; -webkit-transition-duration: .3s; -moz-transition-duration: .3s; -o-transition-duration: .3s;
+}
+#full-logo{
+    margin: auto 0;
+    padding-bottom: 10px;
+    filter: drop-shadow(0 0 5px var(--shadow-color)); -webkit-filter: drop-shadow(0 0 5px var(--shadow-color));
+}
+#theme img{
+    height: 30px;
+}
+
+/* Botones */
+button{
+    cursor: pointer;
+    border: none;
+    width: fit-content;
+    min-width: 50px;
+    aspect-ratio: 1/1;
+    background-color: transparent;
+    transition-property: background-color; -webkit-transition-property: background-color; -moz-transition-property: background-color; -o-transition-property: background-color;
+    transition-duration: .2s; -webkit-transition-duration: .2s; -moz-transition-duration: .2s; -o-transition-duration: .2s;
+}
+button:focus{border: none;}
+button:disabled{opacity: .5;}
+
+/* Visualizer */
+#visualizer{
+    position: fixed;
+    display: flex;
+    align-items: flex-end;
+    justify-self: center;
+    min-height: 300px;
+    height: calc(100vh - 100px - 20vh);
+    gap: 5px;
+    left: 50%;
+    width: 100%;
+    max-width: inherit;
+    bottom: 0;
+    transform: translateX(-50%); -webkit-transform: translateX(-50%); -moz-transform: translateX(-50%); -o-transform: translateX(-50%);
+    z-index: -1;
+    padding: 0 5px;
+}
+
+.bar{
+    height: 1px;
+    width: 100%;
+    transition-property: height; -webkit-transition-property: height; -moz-transition-property: height; -o-transition-property: height;
+    transition-duration: .3s; -webkit-transition-duration: .3s; -moz-transition-duration: .3s; -o-transition-duration: .3s;
+}
+
+/* Password */
+.password-window{
+    position: absolute; 
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+.password{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); -webkit-transform: translate(-50%, -50%); -moz-transform: translate(-50%, -50%); -o-transform: translate(-50%, -50%);
+    width: 30%;
+    min-width: 200px;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    border-radius: 10px;
+    padding: 10px;
+}
+.password *{font-family: 'MuseoModerno', sans-serif;}
+.password input{
+    cursor: text;
+    width: 100%;
+    margin: auto;
+    font-size: 2em;
+    border-radius: 10px;
+    text-align: center;
+}
+.password input:focus{outline: none;}
+.password button{
+    aspect-ratio: initial;
+    padding: 5px; 
+    border-radius: 50px;
+    width: 100%; 
+    opacity: .5; 
+    transition-property: opacity; -webkit-transition-property: opacity; -moz-transition-property: opacity; -o-transition-property: opacity;
+    transition-duration: .2s; -webkit-transition-duration: .2s; -moz-transition-duration: .2s; -o-transition-duration: .2s;
+}
+.password button:hover{
+    opacity: 1;
+}
+.password h1, .password p{text-align: center;}
+.password h1{color: var(--accent-color);}
+
+/* Aux */
+.d-none{display: none!important;}
+
+.fade-in{animation: fade-in .2s forwards; -webkit-animation: fade-in .2s forwards; -moz-animation: fade-in .2s forwards; -o-animation: fade-in .2s forwards;}
+.fade-out{animation: fade-out .2s forwards; -webkit-animation: fade-out .2s forwards; -moz-animation: fade-out .2s forwards; -o-animation: fade-out .2s forwards;}
+.fade-in-out{animation: fade-in-out 3s forwards; -webkit-animation: fade-in-out 3s forwards; -moz-animation: fade-in-out 3s forwards; -o-animation: fade-in-out 3s forwards;}
+
+@keyframes fade-in {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+@keyframes fade-out {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+@keyframes fade-in-out {
+    0% {opacity: 0;}
+    20%, 80% {opacity: 1;}
+    100% {opacity: 0;}
+}
