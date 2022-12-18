@@ -1,5 +1,6 @@
 /* Selector de Playlist */
 .playlist-selector{
+    cursor: grab;
     position: relative;
     z-index: 20;
     padding: 50px 0;
@@ -9,6 +10,7 @@
     align-items: flex-end;
     overflow-x: hidden;
     scroll-snap-type: x proximity;
+    user-select: none;
     transition-property: background-color, height; -webkit-transition-property: background-color, height; -moz-transition-property: background-color, height; -o-transition-property: background-color, height;
     transition-duration: .3s; -webkit-transition-duration: .3s; -moz-transition-duration: .3s; -o-transition-duration: .3s;
 }
@@ -165,3 +167,6 @@ img.disc{
     cursor: default;
     text-shadow: 0 0 10px #000;
 }
+
+/* Aux */
+.grabbing{cursor: grabbing!important;}

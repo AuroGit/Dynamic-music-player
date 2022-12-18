@@ -1002,7 +1002,8 @@ const selectorScroll = e => {
     if (e.target.id == "left-btn") {
         selector.scroll({
             top: 0,
-            left: selector.scrollLeft - itemWidth >= 0 ? selector.scrollLeft - itemWidth : 0,
+            left: selector.scrollLeft - itemWidth >= 0 ?
+                selector.scrollLeft - itemWidth : 0,
             behavior: 'smooth'
         });
     } else if (e.target.id == "right-btn") {
@@ -1088,8 +1089,66 @@ randomPLBtn.addEventListener("click", ()=>{
     playPauseSong();
     toggleList(false);
 });
+
 sliderLBtn.addEventListener("click", (e)=>{selectorScroll(e)});
 sliderRBtn.addEventListener("click", (e)=>{selectorScroll(e)});
+
+let isDown = false, startX, scrollLeft;
+function isTouchEnabled() {
+    return ( 'ontouchstart' in window ) || ( navigator.maxTouchPoints > 0 );
+}
+
+if (isTouchEnabled()) {
+    selector.addEventListener("touchstart", (e)=>{
+        isDown = true;
+        selector.removeAttribute("style");
+        selector.classList.add("grabbing");
+        startX = e.pageX - sliderLBtn.offsetLeft;
+        scrollLeft = selector.scrollLeft;
+    });
+    selector.addEventListener("touchmove", (e)=>{
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - sliderLBtn.offsetLeft;
+        const move = x - startX;
+        selector.scrollLeft = scrollLeft - move;
+        if (selector.getAttribute("style") == null) selector.style.scrollSnapType = "unset";
+    });
+    selector.addEventListener("touchend", ()=>{
+        isDown = false;
+        selector.classList.remove("grabbing");
+        selector.removeAttribute("style");
+        selector.style.scrollBehavior = "smooth";
+    });
+} else {
+    selector.addEventListener("mousedown", (e)=>{
+        isDown = true;
+        selector.removeAttribute("style");
+        selector.classList.add("grabbing");
+        startX = e.pageX - sliderLBtn.offsetLeft;
+        scrollLeft = selector.scrollLeft;
+    });
+    selector.addEventListener("mousemove", (e)=>{
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - sliderLBtn.offsetLeft;
+        const move = x - startX;
+        selector.scrollLeft = scrollLeft - move;
+        if (selector.getAttribute("style") == null) selector.style.scrollSnapType = "unset";
+    });
+    selector.addEventListener("mouseup", ()=>{
+        isDown = false;
+        selector.classList.remove("grabbing");
+        selector.removeAttribute("style");
+        selector.style.scrollBehavior = "smooth";
+    });
+    selector.addEventListener("mouseleave", ()=>{
+        isDown = false;
+        selector.classList.remove("grabbing");
+        selector.removeAttribute("style");
+        selector.style.scrollBehavior = "smooth";
+    });
+}
 
 themeBtn.addEventListener("click", ()=>{themeSwitch()});
 pwWindow.addEventListener("click", (e)=>{

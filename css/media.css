@@ -33,7 +33,7 @@
     .playlist-name{font-size: .8em;}
     #playlist-list ul, #randomize{font-size: .75em;}
     #player #title{font-size: 1em;}
-    #player #volume, #player #volume *{display: none;}
+    #player #volume, #player #volume *, .selector-btn{display: none;}
     #player #mode{position: absolute; left: 7px;}
 }
 
