@@ -674,7 +674,8 @@ const setSong = id => {
     title.innerText = currentList[id].nombre;
     setTimeout(()=>{
         progress.max = audioSrc.duration;
-        duration.innerText = formatTime(audioSrc.duration);
+        duration.innerText = formatTime(audioSrc.duration) === NaN ? 
+            currentList[id].duracion : formatTime(audioSrc.duration);
     }, 150);
 }
 const createContext = ()=> {
@@ -782,7 +783,7 @@ const formatTime = time => {
     let min = Math.floor(time / 60);
     let seg = Math.floor(time % 60);
     if (seg < 10) seg = `0${seg}`;
-    return `${min}:${seg}`
+    return `${min}:${seg}`;
 }
 const visualizerUpdate = arr => {
     if (arr == undefined) {
@@ -928,7 +929,7 @@ const toggleList = val => {
         else if (!val) plList.removeAttribute("class");
     }
 }
-const listUpdate = () => {
+const listUpdate = ()=> {
     const trackList = document.getElementById("track-list");
     
     while (trackList.childElementCount > 0) {
@@ -963,7 +964,7 @@ const listUpdate = () => {
     })});
 }
 listUpdate();
-const selectorCreate = () => {
+const selectorCreate = ()=> {
     const ulElement = document.getElementById("list");
     for (let playlist of playLists) {
         const fragment = document.createDocumentFragment();
@@ -1038,7 +1039,7 @@ const themeSwitch = ()=> {
         pwWindow.setAttribute("style", `--bg-theme: var(--bg-light-theme); --text-color: var(--text-color-light-theme); --shadow-color: var(--shadow-light-color); --player-color-2: var(--player-color-2-light);`);
     }
 }
-const fade = (nodesOut, nodesIn) => {
+const fade = (nodesOut, nodesIn)=> {
     nodesOut.forEach(el=>el.classList.add("fade-out"));
     setTimeout(()=>{
         for (let item of nodesOut) item.classList.replace("fade-out", "d-none");
