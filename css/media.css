@@ -17,6 +17,7 @@
     }
     #player button:hover{border-color: transparent!important;}
     #player button#play{width: unset;}
+    .playlist-selector{scroll-snap-type: unset;}
 }
 
 /* Movil */

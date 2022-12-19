@@ -1098,40 +1098,39 @@ function isTouchEnabled() {
     return ( 'ontouchstart' in window ) || ( navigator.maxTouchPoints > 0 );
 }
 
-if (isTouchEnabled()) {
+if (isTouchEnabled()) {console.log(isTouchEnabled())
     selector.addEventListener("touchstart", (e)=>{
         isDown = true;
-        selector.removeAttribute("style");
-        selector.classList.add("grabbing");
-        startX = e.pageX - sliderLBtn.offsetLeft;
+        startX = e.touches[0].pageX - selector.offsetLeft;
         scrollLeft = selector.scrollLeft;
-    });
+    }, false);
     selector.addEventListener("touchmove", (e)=>{
         if (!isDown) return;
         e.preventDefault();
-        const x = e.pageX - sliderLBtn.offsetLeft;
+        const x = e.touches[0].pageX - selector.offsetLeft;
         const move = x - startX;
         selector.scrollLeft = scrollLeft - move;
-        if (selector.getAttribute("style") == null) selector.style.scrollSnapType = "unset";
-    });
+    }, false);
     selector.addEventListener("touchend", ()=>{
         isDown = false;
-        selector.classList.remove("grabbing");
-        selector.removeAttribute("style");
-        selector.style.scrollBehavior = "smooth";
-    });
-} else {
+        if (window.innerWidth > 425) {
+            selector.style.scrollBehavior = "smooth";
+            selector.style.scrollSnapType = "x mandatory";
+            setTimeout(()=>{selector.removeAttribute("style")}, 500);
+        }
+    }, false);
+} else {console.log(isTouchEnabled())
     selector.addEventListener("mousedown", (e)=>{
         isDown = true;
         selector.removeAttribute("style");
         selector.classList.add("grabbing");
-        startX = e.pageX - sliderLBtn.offsetLeft;
+        startX = e.pageX - selector.offsetLeft;
         scrollLeft = selector.scrollLeft;
     });
     selector.addEventListener("mousemove", (e)=>{
         if (!isDown) return;
         e.preventDefault();
-        const x = e.pageX - sliderLBtn.offsetLeft;
+        const x = e.pageX - selector.offsetLeft;
         const move = x - startX;
         selector.scrollLeft = scrollLeft - move;
         if (selector.getAttribute("style") == null) selector.style.scrollSnapType = "unset";
