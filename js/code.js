@@ -72,7 +72,8 @@ const playLists = [
             }
         ],
         listImg : "./assets/playlists/hitJuice/hitJuice-bg.webp",
-        listRecord : "./assets/playlists/hitJuice/hitJuice-record.png"
+        listRecord : "./assets/playlists/hitJuice/hitJuice-record.png",
+        listCase : "./assets/playlists/hitJuice/hitJuice-case.png"
     },
     {
         nombre : "Teen Spirit",
@@ -142,7 +143,8 @@ const playLists = [
             }
         ],
         listImg : "./assets/playlists/teenSpirit/teenSpirit-bg.webp",
-        listRecord : "./assets/playlists/teenSpirit/teenSpirit-record.png"
+        listRecord : "./assets/playlists/teenSpirit/teenSpirit-record.png",
+        listCase : "./assets/playlists/teenSpirit/teenSpirit-case.png"
     },
     {
         nombre : "Jangueo",
@@ -247,7 +249,8 @@ const playLists = [
             }
         ],
         listImg : "./assets/playlists/jangueo/jangueo-bg.webp",
-        listRecord : "./assets/playlists/jangueo/jangueo-record.png"
+        listRecord : "./assets/playlists/jangueo/jangueo-record.png",
+        listCase : "./assets/playlists/jangueo/jangueo-case.png"
     },
     {
         nombre : "Gines' Rap",
@@ -289,7 +292,8 @@ const playLists = [
             }
         ],
         listImg : "./assets/playlists/ginesRap/ginesRap-bg.webp",
-        listRecord : "./assets/playlists/ginesRap/ginesRap-record.png"
+        listRecord : "./assets/playlists/ginesRap/ginesRap-record.png",
+        listCase : "./assets/playlists/ginesRap/ginesRap-case.png"
     },
     {
         nombre : "GalStars",
@@ -345,7 +349,8 @@ const playLists = [
             }
         ],
         listImg : "./assets/playlists/galStars/galStars-bg.webp",
-        listRecord : "./assets/playlists/galStars/galStars-record.png"
+        listRecord : "./assets/playlists/galStars/galStars-record.png",
+        listCase : "./assets/playlists/galStars/galStars-case.png"
     },
     {
         nombre : "Metal Mood",
@@ -436,7 +441,8 @@ const playLists = [
             }
         ],
         listImg : "./assets/playlists/metalMood/metalMood-bg.webp",
-        listRecord : "./assets/playlists/metalMood/metalMood-record.png"
+        listRecord : "./assets/playlists/metalMood/metalMood-record.png",
+        listCase : "./assets/playlists/metalMood/metalMood-case.png"
     },
     {
         nombre : "Time Machine",
@@ -499,7 +505,8 @@ const playLists = [
             }
         ],
         listImg : "./assets/playlists/timeMachine/timeMachine-bg.webp",
-        listRecord : "./assets/playlists/timeMachine/timeMachine-record.png"
+        listRecord : "./assets/playlists/timeMachine/timeMachine-record.png",
+        listCase : "./assets/playlists/timeMachine/timeMachine-case.png"
     }    
 ];
 const marPlaylist = {
@@ -612,7 +619,8 @@ const marPlaylist = {
                 }
             ],
             listImg : "./assets/playlists/mar/mar-bg.webp",
-            listRecord : "./assets/playlists/mar/mar-record.png"
+            listRecord : "./assets/playlists/mar/mar-record.png",
+            listCase : "./assets/playlists/mar/mar-case.png"
 };
 
 const password = "mar23";
@@ -970,8 +978,8 @@ const selectorCreate = ()=> {
         const plItem = document.createElement("LI");
 
         let liHTML = `<div class="record">
-            <img src="${playlist.listRecord || "assets/images/red-disc.png"}" class="disc">
-            <img src="${playlist.listImg || "assets/images/rock.jpg"}" class="case"></img>
+            <img src="${playlist.listRecord || "assets/images/record.png"}" class="disc">
+            <img src="${playlist.listCase}" class="case"></img>
             <div class="buttons">
                 <button class="play-list" data-id="play">
                     <svg width="50px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 75.39 75.39">
@@ -1098,7 +1106,7 @@ function isTouchEnabled() {
     return ( 'ontouchstart' in window ) || ( navigator.maxTouchPoints > 0 );
 }
 
-if (isTouchEnabled()) {console.log(isTouchEnabled())
+if (isTouchEnabled()) {
     selector.addEventListener("touchstart", (e)=>{
         isDown = true;
         startX = e.touches[0].pageX - selector.offsetLeft;
@@ -1119,34 +1127,34 @@ if (isTouchEnabled()) {console.log(isTouchEnabled())
             setTimeout(()=>{selector.removeAttribute("style")}, 500);
         }
     }, false);
-} else {console.log(isTouchEnabled())
-    selector.addEventListener("mousedown", (e)=>{
-        isDown = true;
-        selector.removeAttribute("style");
-        selector.classList.add("grabbing");
-        startX = e.pageX - selector.offsetLeft;
-        scrollLeft = selector.scrollLeft;
-    });
-    selector.addEventListener("mousemove", (e)=>{
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - selector.offsetLeft;
-        const move = x - startX;
-        selector.scrollLeft = scrollLeft - move;
-        if (selector.getAttribute("style") == null) selector.style.scrollSnapType = "unset";
-    });
-    selector.addEventListener("mouseup", ()=>{
-        isDown = false;
-        selector.classList.remove("grabbing");
-        selector.removeAttribute("style");
-        selector.style.scrollBehavior = "smooth";
-    });
-    selector.addEventListener("mouseleave", ()=>{
-        isDown = false;
-        selector.classList.remove("grabbing");
-        selector.removeAttribute("style");
-        selector.style.scrollBehavior = "smooth";
-    });
+} else {
+    // selector.addEventListener("mousedown", (e)=>{
+    //     isDown = true;
+    //     selector.removeAttribute("style");
+    //     selector.classList.add("grabbing");
+    //     startX = e.pageX - selector.offsetLeft;
+    //     scrollLeft = selector.scrollLeft;
+    // });
+    // selector.addEventListener("mousemove", (e)=>{
+    //     if (!isDown) return;
+    //     e.preventDefault();
+    //     const x = e.pageX - selector.offsetLeft;
+    //     const move = x - startX;
+    //     selector.scrollLeft = scrollLeft - move;
+    //     if (selector.getAttribute("style") == null) selector.style.scrollSnapType = "unset";
+    // });
+    // selector.addEventListener("mouseup", ()=>{
+    //     isDown = false;
+    //     selector.classList.remove("grabbing");
+    //     selector.removeAttribute("style");
+    //     selector.style.scrollBehavior = "smooth";
+    // });
+    // selector.addEventListener("mouseleave", ()=>{
+    //     isDown = false;
+    //     selector.classList.remove("grabbing");
+    //     selector.removeAttribute("style");
+    //     selector.style.scrollBehavior = "smooth";
+    // });
 }
 
 themeBtn.addEventListener("click", ()=>{themeSwitch()});
