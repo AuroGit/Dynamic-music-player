@@ -623,7 +623,6 @@ const marPlaylist = {
             listCase : "./assets/playlists/mar/mar-case.png"
 };
 
-const password = "mar23";
 if ((mes == 11 && dia >= 30) || mes == 0 || unlockMar) {
     playLists.unshift(marPlaylist);
 }
@@ -739,10 +738,9 @@ const seekUpdate = ()=> {
                 break;
             case "2":
                 if (tracksToPlayArr.length > 0) {
-                    playedTracksArr.unshift(currentTrack);
-                    currentTrack = tracksToPlayArr[randomTrack()];
+                    playedTracksArr.push(currentTrack);
+                    currentTrack = tracksToPlayArr.shift();
                     setSong(currentTrack);
-                    tracksToPlayArr.splice(tracksToPlayArr.indexOf(currentTrack), 1);
                     playPauseSong();
                 } else {tracksArrReset();}
                 break;
@@ -1054,6 +1052,7 @@ const fade = (nodesOut, nodesIn)=> {
         for (let item of nodesIn) item.classList.replace("d-none", "fade-in");
     }, 200);
 }
+const password = "mar23";
 const pwMatch = pass => {
     let modal;
     if (pass.toLowerCase() !== password) {
