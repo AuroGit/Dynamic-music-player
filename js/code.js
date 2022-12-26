@@ -882,6 +882,7 @@ const goBack = ()=> {
     }
     document.body.style.backgroundImage = "none";
     selector.style.pointerEvents = "none";
+    playModeToggle(0);
     fade([player, visualizer, symbol], [logo]);
     selector.classList.remove("compact");
     setTimeout(function(){selector.removeAttribute("style")},500);
